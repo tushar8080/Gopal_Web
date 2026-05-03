@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gopal Filtered Oils & Flours</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #e3a400;
+            --mustard: #f6c233;
+            --green: #1f6b34;
+            --cream: #fffaf0;
+            --brown: #4d3319;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Poppins, "Noto Sans Devanagari", sans-serif;
+            background: #fffdf8;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .topbar {
+            background: linear-gradient(90deg, var(--gold), #ffcc33);
+            padding: 10px 6%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--green);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+            font-weight: 600;
+        }
+
+        .menu a {
+            color: #333;
+        }
+
+        .lang-switch {
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .lang-switch button {
+            border: none;
+            padding: 10px 18px;
+            background: white;
+            font-weight: 600;
+        }
+
+        .lang-switch .active {
+            background: var(--green);
+            color: white;
+        }
+
+        .hero {
+            min-height: 90vh;
+            padding: 60px 6%;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background:
+                linear-gradient(rgba(255, 251, 236, .88), rgba(255, 251, 236, .88)),
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1800');
+            background-size: cover;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            line-height: 1.05;
+            margin-bottom: 15px;
+            color: var(--brown);
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--green);
+        }
+
+        .tagline {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .sub {
+            font-size: 22px;
+            color: #3d5a2f;
+            margin-bottom: 30px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .btn-whatsapp {
+            background: #1f8f45;
+            color: white;
+        }
+
+        .btn-outline {
+            background: var(--mustard);
+            color: #222;
+        }
+
+        .hero-pack {
+            position: relative;
+            text-align: center;
+        }
+
+        .pack {
+            width: 420px;
+            max-width: 100%;
+            filter: drop-shadow(0 18px 35px rgba(0, 0, 0, .18));
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            padding: 35px 6%;
+            background: #fff8e8;
+            border-top: 1px solid #f0e2b4;
+            border-bottom: 1px solid #f0e2b4;
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .feature h4 {
+            margin: 8px 0 4px;
+            color: var(--green);
+        }
+
+        .section {
+            padding: 80px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #7c5b25;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 15px;
+        }
+
+        .prod-row-1, .prod-row-2 {
+            display: contents;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+            text-align: center;
+            transition: .3s;
+        }
+
+        @media(max-width:1200px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:768px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .product-img {
+            height: 230px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #fff7d6, #ffe79a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+        }
+
+        .order-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: var(--green);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .brand-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-img {
+            min-height: 500px;
+            border-radius: 28px;
+            background:
+                linear-gradient(rgba(255, 255, 255, .08), rgba(255, 255, 255, .08)),
+                url('https://images.openai.com/static-rsc-4/AUtJtVNC_m1aApjp82MQSelgfYWoFmwgce4Tsh_WmsUxITbkWGWPfetymI5mjzRLG7KDNVymPWA8y8MI_HagTSdYtMGdjOmPOWPeLey6WaDtobspoXtP2yD4ZJF_GSiRLa9BzVrkOFnlMRa4SDUv9EYt3Fx6K2Lz1-r6SIpEiAmDubk2XpmtLg5Ac2NPcuFl?purpose=inline');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .story h2 {
+            font-size: 52px;
+            color: var(--brown);
+        }
+
+        .story p {
+            font-size: 18px;
+            color: #444;
+        }
+
+        .purity-section{
+padding:80px 6%;
+text-align:center;
+background:linear-gradient(#fff8e6,#fff2c7);
+}
+
+.purity-content h2{
+font-size:48px;
+color:#1f6b34;
+margin-bottom:10px;
+}
+
+.purity-content p{
+font-size:20px;
+color:#555;
+margin-bottom:25px;
+}
+
+.purity-btn{
+padding:16px 30px;
+border:none;
+border-radius:40px;
+background:#1f8f45;
+color:#fff;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.purity-btn:hover{
+transform:translateY(-2px);
+}
+
+/* Modal Background */
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+align-items:center;
+justify-content:center;
+
+/* Blur effect */
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(8px);
+z-index:999;
+}
+
+/* Modal Box */
+.modal-box{
+background:white;
+padding:40px;
+border-radius:20px;
+max-width:600px;
+width:90%;
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+animation:fadeIn .3s ease;
+}
+
+.modal-box h2{
+margin-bottom:15px;
+color:#1f6b34;
+}
+
+.modal-box p{
+margin-bottom:15px;
+color:#444;
+line-height:1.6;
+}
+
+/* Close Button */
+.close-btn{
+position:absolute;
+right:20px;
+top:15px;
+font-size:26px;
+cursor:pointer;
+}
+
+/* Animation */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+        .footer {
+            background: #204d28;
+            color: #f5e6c8;
+            padding: 50px 8%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-left h2 {
+            font-size: 32px;
+            margin-bottom: 18px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .footer-left p,
+        .footer-right p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 8px 0;
+        }
+
+        .footer-right h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #f5e6c8;
+        }
+
+        .footer-right strong {
+            color: #e7c97a;
+        }
+
+        /* Mobile Responsive */
+        @media(max-width:768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        .float-wa {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            /* background: #25D366; */
+                background: url('https://th.bing.com/th?q=Whats+App+Icon+with+Transparent+Background&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&pid=InlineBlock&rm=3&mkt=en-SG&cc=SG&setlang=en&adlt=strict&t=1&mw=247') no-repeat center center;
+                background-size:auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+        .float-wa:hover {
+            transform: translateY(-4px);
+        }
+        .float-wa:active {
+            transform: scale(0.9);
+        }
+        
+
+        @media(max-width:980px) {
+            .menu {
+                display: none
+            }
+
+            .hero,
+            .brand-story {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .story h2 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar" id="topbar">
+        <div id="topline">Manufactured with Purity. Delivered with Trust.</div>
+        <div>WhatsApp Orders Available</div>
+    </div>
+
+    <nav>
+        <a href="#topbar" class="logo">G<span>O</span>PAL</a>
+
+        <div class="menu">
+            <a href="#Home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#Purity">Promise</a>
+            <a href="#Wholesale">Wholesale</a>
+            <a href="#footer">Contact</a>
+        </div>
+
+        <div class="lang-switch">
+            <button id="enBtn" class="active" onclick="setLang('en')">English</button>
+            <button id="hiBtn" onclick="setLang('hi')">हिंदी</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="Home">
+        <div>
+            <h1 id="heroTitle">
+                Pure Mustard Oil &
+                <span>Fresh Flours</span>
+            </h1>
+
+            <div class="tagline" id="tagline">
+                From Our Mill To Your Home
+            </div>
+
+            <p class="sub" id="subline">
+                Factory Fresh. Trusted By Families.
+            </p>
+
+            <div class="cta-row">
+                <a class="btn btn-whatsapp"
+                    href="https://wa.me/7054861608?text=Hi%20Please%20share%20your%20product%20catalogue%20for%20ordering">
+                    Order on WhatsApp
+                </a>
+
+                <a href="#products" class="btn btn-outline">
+                    Explore Products
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-pack">
+            <img class="pack" src="https://dummyimage.com/520x700/f7e7ae/6d4c0a&text=Gopal+Premium+Chakki+Atta"
+                alt="Gopal Packaging" />
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h4>100% Pure</h4>
+            <p>No Adulteration</p>
+        </div>
+
+        <div class="feature">
+            <h4>In-house Manufacturing</h4>
+            <p>Quality Controlled</p>
+        </div>
+
+        <div class="feature">
+            <h4>Freshly Milled</h4>
+            <p>Daily Production</p>
+        </div>
+
+        <div class="feature">
+            <h4>Factory To Home</h4>
+            <p>Best Value</p>
+        </div>
+    </section>
+
+    <section class="section" id="products">
+        <h2 class="section-title" id="productsTitle">
+            Our Products
+        </h2>
+        <div class="section-sub">
+            Shuddhta ki Guarantee, Swad ka Vaada
+        </div>
+
+        <div class="products">
+
+            <div class="prod-row-1">
+                <div class="card">
+                    <div class="product-img">🫙</div>
+                    <h3>Filtered Black Mustard Oil</h3>
+                    <p>1L • 5L • 15L Packs</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=I want Mustard Oil details">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+    
+                <div class="card">
+                    <div class="product-img">🌾</div>
+                    <h3>Filtered Yellow Mustard Oil</h3>
+                    <p>1L • 5L • 15L Packs</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=I want Chakki Atta details">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+    
+                <div class="card">
+                    <div class="product-img">🥣</div>
+                    <h3>Premium Chakki Atta</h3>
+                    <p>Traditional Fresh Milling</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=Please share flour catalogue">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+            </div>
+            
+            <div class="prod-row-2">
+
+                <div class="card">
+                    <div class="product-img">🫙</div>
+                    <h3>Premium Wheat Grains</h3>
+                    <p>Freshly Procured</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=I want Mustard Oil details">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+                
+                <div class="card">
+                    <div class="product-img">🌾</div>
+                    <h3>Black & Yellow Mustard Seeds</h3>
+                    <p>Freshly Procured</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=I want Chakki Atta details">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+                
+                <div class="card">
+                    <div class="product-img">🥣</div>
+                    <h3>Besan & Multigrain Atta</h3>
+                    <p>Traditional Fresh Milling</p>
+                    <!-- <a class="order-btn" href="https://wa.me/91XXXXXXXXXX?text=Please share flour catalogue">
+                        Order via WhatsApp
+                    </a> -->
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    <section class="purity-section" id="Purity">
+
+  <div class="purity-content">
+    <h2 id="puritySectionTitle">Our Purity Promise</h2>
+    <p id="puritySectionSub">Crafted with care. Delivered with trust.</p>
+
+    <button class="purity-btn" id="puritySectionBtn" onclick="openPurityModal()">
+      Read Our Promise
+    </button>
+  </div>
+
+</section>
+
+<!-- Popup Modal -->
+<div id="purityModal" class="modal">
+
+  <div  class="modal-box">
+
+    <!-- <span class="close-btn" onclick="closePurityModal()">×</span> -->
+
+    <h2 id="purityModalTitle">Our Purity Promise</h2>
+
+    <div id="purityModalText"></div>
+
+  </div>
+
+</div>
+
+    <section class="section" id="Wholesale">
+        <div class="brand-story">
+            <div class="story">
+                <h2 id="storyTitle">
+                    From Our Mill To Your Kitchen
+                </h2>
+
+                <p>
+                    At Gopal Filtered Oils, purity is not a claim —
+                    it is our process. From mustard seeds to fresh milled flour,
+                    we deliver trusted products directly from manufacturer to families.
+                </p>
+
+                <a class="btn btn-whatsapp" href="https://wa.me/91XXXXXXXXXX?text=Interested in wholesale dealership">
+                    Wholesale Inquiry
+                </a>
+
+            </div>
+
+            <div class="story-img"></div>
+        </div>
+    </section>
+
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+
+            <!-- Left Side -->
+            <div class="footer-left">
+                <h2>Gopal Filtered Oils</h2>
+                <p>
+                    D-55, Gujaini <br>
+                    Kanpur, Uttar Pradesh
+                </p>
+
+                <p>
+                    Retail • Wholesale • Manufacturer Direct
+                </p>
+            </div>
+
+            <!-- Right Side -->
+            <div class="footer-right">
+                <h3>Contact Proprietor</h3>
+                <p><strong>Owner:</strong> Mr. CL Gupta</p>
+                <p><strong>Phone:</strong> +91 9140262602</p>
+                <p><strong>Email:</strong> info@gopalfilteredoils.com</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <a class="float-wa" href="https://wa.me/91XXXXXXXXXX?text=Hi I want to place an order">
+        
+    </a>
+
+    <script>
+        let currentLang = "en"; // Add global language tracker
+
+        const content = {
+            en: {
+                top: "Manufactured with Purity. Delivered with Trust.",
+                hero: `Pure Mustard Oil &`,
+                span: `Fresh Flours`,
+                tag: "From Our Mill To Your Home",
+                sub: "Factory Fresh. Trusted By Families.",
+                products: "Our Products",
+                story: "From Our Mill To Your Kitchen",
+                purityTitle: "Our Purity Promise",
+                puritySub: "Crafted with care. Delivered with trust.",
+                purityBtn: "Our Promise",
+                purityText: `
+                At Gopal Filtered Oils, purity is not just a claim — it is the foundation of everything we do.<br><br>
+
+                From carefully selecting raw ingredients to processing them using a balance of traditional methods and modern techniques,
+                we ensure that every drop of oil and every grain of flour meets the highest standards.<br><br>
+
+                Every product that leaves our mill reflects freshness, honesty, and trust.<br><br>
+
+                <strong>Purity you can trust. Quality you can feel.</strong>
+                `
+
+            },
+            hi: {
+                top: "शुद्धता हमारी पहचान, भरोसा हमारी परंपरा",
+                hero: `शुद्ध सरसों तेल और`,
+                span: `ताज़ा आटा`,
+                tag: "हमारी मिल से सीधे आपके घर तक",
+                sub: "ताज़ा उत्पादन। परिवारों का भरोसा।",
+                products: "हमारे उत्पाद",
+                story: "हमारी मिल से आपके घर तक",
+                purityTitle: "शुद्धता का हमारा वादा",
+                puritySub: "देखभाल के साथ तैयार। भरोसे के साथ दिया गया।",
+                purityBtn: "हमारा वादा",
+                purityText: `
+                गोपाल फ़िल्टर्ड ऑयल्स में शुद्धता कोई दावा नहीं,
+                बल्कि हमारी प्रक्रिया का आधार है।<br><br>
+
+                हम कच्चे माल का चयन सावधानी से करते हैं और
+                पारंपरिक विधियों के साथ आधुनिक तकनीक का संतुलन बनाए रखते हैं,
+                ताकि हर बूंद तेल और हर दाना आटा उच्चतम गुणवत्ता पर खरा उतरे।<br><br>
+
+                हमारी मिल से निकलने वाला हर उत्पाद
+                ताजगी, ईमानदारी और भरोसे का प्रतीक है।<br><br>
+
+                <strong>शुद्धता जिस पर भरोसा किया जा सके।</strong>
+                `
+            }
+        };
+
+        function setLang(lang) {
+            currentLang = lang; // Track current language
+            
+            document.getElementById("topline").innerText = content[lang].top;
+            document.getElementById("heroTitle").innerHTML =
+                content[lang].hero + "<span>" + content[lang].span + "</span>";
+            document.getElementById("tagline").innerText = content[lang].tag;
+            document.getElementById("subline").innerText = content[lang].sub;
+            document.getElementById("productsTitle").innerText = content[lang].products;
+            document.getElementById("storyTitle").innerText = content[lang].story;
+            document.getElementById("puritySectionTitle").innerText = content[lang].purityTitle;
+            document.getElementById("puritySectionSub").innerText = content[lang].puritySub;
+            document.getElementById("puritySectionBtn").innerText = content[lang].purityBtn;
+
+            document.getElementById("enBtn").classList.remove("active");
+            document.getElementById("hiBtn").classList.remove("active");
+
+            if (lang === "en") {
+                document.getElementById("enBtn").classList.add("active");
+            } else {
+                document.getElementById("hiBtn").classList.add("active");
+            }
+        }
+
+        function openPurityModal(){
+            document.getElementById("purityModal").style.display = "flex";
+
+            document.getElementById("purityModalTitle").innerText =
+                content[currentLang].purityTitle;
+
+            document.getElementById("purityModalText").innerHTML =
+                content[currentLang].purityText;
+        }
+
+        // function closePurityModal(){
+        // document.getElementById("purityModal").style.display = "none";
+        // }
+
+        /* Close on outside click */
+        window.onclick = function(e){
+            const modal = document.getElementById("purityModal");
+            if(e.target === modal){
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
